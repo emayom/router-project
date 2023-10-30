@@ -53,7 +53,7 @@ function createHashRouter(element, opts){
      */
     window.addEventListener('hashchange', (event)=>{
         router.navigate(
-            window.location.hash.replace(/\#/g, '')
+            window.location.hash.replace(/#/g, '')
         );
     });  
 
