@@ -25,7 +25,7 @@ class Router {
         this.basename = basename;
 
         routes.map(route => this.addRoute(...route));
-    };
+    }
     /**
      * @returns Router
      */
@@ -45,8 +45,8 @@ class Router {
             new component(this.root, params);
 
         }else {
-            const notFoundRoute = this.#routes.get('*');
-            (notFoundRoute)? new notFoundRoute.component() : this.navigate('/');
+            const notFoundRoute = this.errorRoute;
+            (notFoundRoute)? new notFoundRoute.component(this.root) : this.navigate('/');
         }
     }
     /**
@@ -65,9 +65,7 @@ class Router {
      * @void
      */
     onRouteError(component){
-        this.#routes?.set('*', {
-            component: component
-        });
+        this.errorRoute = { component }
     }
 }
 /**
